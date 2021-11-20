@@ -4,6 +4,7 @@ const tiposAvance = gql`
   type Avance {
     _id: ID!
     fecha: Date!
+    titulo: String!
     descripcion: String!
     observaciones: [String]
     proyecto: Proyecto!
@@ -15,7 +16,7 @@ const tiposAvance = gql`
     filtrarAvance(idProyecto: String!): [Avance]
   }
   type Mutation {
-    crearAvance(fecha: Date!, descripcion: String!, proyecto: String!, creadoPor: String!): Avance
+    crearAvance(fecha: Date!, titulo: String!, descripcion: String!, proyecto: String!, creadoPor: String!): Avance
   }
 `;
 
