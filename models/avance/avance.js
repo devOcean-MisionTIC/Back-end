@@ -9,6 +9,10 @@ const avanceSchema = new Schema({
     type: Date,
     required: true,
   },
+  titulo: {
+    type: String,
+    required: true,
+  },
   descripcion: {
     type: String,
     required: true,
