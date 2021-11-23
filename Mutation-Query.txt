@@ -1,0 +1,160 @@
+	nombre:"Marcela"
+        apellido:"Rojas"
+        identificacion: "5678"
+        correo:"marce@devocean.com"
+        rol: LIDER
+        estado: AUTORIZADO
+      
+
+      	nombre: "Juan"
+        apellido: "Pineda"
+        identificacion: "9101"
+        correo: "juan@devocean.com"
+        rol: ESTUDIANTE
+        estado: AUTORIZADO
+
+
+      	nombre: "Pipe"
+        apellido: "Sierra"
+        identificacion: "1112"
+        correo: "pipe@devocean.com"
+        rol: ESTUDIANTE
+        estado: NO_AUTORIZADO
+
+     	nombre: "Victoria"
+        apellido: "Yuan"
+        identificacion: "1314"
+        correo: "Victoria@devocean.com"
+        rol: LIDER
+        estado: NO_AUTORIZADO
+
+mutation {
+  crearUsuario(
+	nombre: "Yeison"
+        apellido: "Buitrago"
+        identificacion: "1516"
+        correo: "yeison@devocean.com"
+        rol: ADMINISTRADOR
+        estado: NO_AUTORIZADO
+  ) {
+    correo
+  }
+}
+
+
+mutation{
+  crearProyecto(
+  nombre: "Proyecto Misión TIC"
+  presupuesto: 120000 
+  fechaInicio: "2021-11-17"
+  fechaFin:"2022-11-17"
+  estado: INACTIVO
+  fase: INICIADO
+  lider: "61970a5575f9455c4d328d2a"
+) {
+    nombre
+  }
+}
+
+mutation{
+  crearProyecto(
+  nombre: "Proyecto Ingles"
+  presupuesto: 250000 
+  fechaInicio: "2021-11-18"
+  fechaFin:"2022-11-18"
+  estado: ACTIVO
+  fase: INICIADO
+  lider: "61970a7e75f9455c4d328d2e"
+) {
+    nombre
+  }
+}
+
+mutation{
+  crearProyecto(
+  nombre: "Proyecto Blandas"
+  presupuesto: 120000 
+  fechaInicio: "2021-01-20"
+  fechaFin:"2022-12-17"
+  estado: INACTIVO
+  fase: INICIADO
+  lider: ""
+) {
+    nombre
+  }
+}
+
+mutation {
+  crearAvance(
+  fecha: "2021-11-17"
+  creadoPor: "61970a6375f9455c4d328d2c"
+  proyecto: "61970b1a75f9455c4d328d35"
+  descripcion: "Este es el avance del proyecto"
+) {
+  _id
+  descripcion
+  fecha
+  }
+}
+
+mutation {
+  crearAvance(
+  fecha: "2021-11-18"
+  creadoPor: "61970a6375f9455c4d328d2c"
+  proyecto: "61970b1a75f9455c4d328d35"
+  descripcion: "Este es el avance del proyecto numero 2"
+) {
+  _id
+  descripcion
+  fecha
+  }
+}
+
+mutation {
+  crearAvance(
+  fecha: "2021-11-19"
+  creadoPor: "61970a6375f9455c4d328d2c"
+  proyecto: "61970b1a75f9455c4d328d35"
+  descripcion: "Este es el avance del proyecto numero 3"
+) {
+  _id
+  descripcion
+  fecha
+  }
+}
+
+
+query Query {
+  Avances {
+    _id
+    fecha
+    descripcion
+    proyecto {
+      _id
+      nombre
+    }
+    creadoPor {
+      nombre
+    }
+  }
+}
+
+
+query {
+  filtrarAvance(idProyecto:"") {
+    fecha
+    _id
+    descripcion
+    observaciones
+  }
+}
+
+query Usuarios {
+  Usuarios {
+    nombre
+    apellido
+    identificacion
+    _id
+    rol
+  }
+}
