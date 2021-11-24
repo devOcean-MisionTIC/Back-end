@@ -1,4 +1,4 @@
-	nombre:"Marcela"
+	      nombre:"Marcela"
         apellido:"Rojas"
         identificacion: "5678"
         correo:"marce@devocean.com"
@@ -21,13 +21,14 @@
         rol: ESTUDIANTE
         estado: NO_AUTORIZADO
 
-     	nombre: "Victoria"
+     	  nombre: "Victoria"
         apellido: "Yuan"
         identificacion: "1314"
         correo: "Victoria@devocean.com"
         rol: LIDER
         estado: NO_AUTORIZADO
 
+# Proyectos **********************************************************************
 mutation {
   crearUsuario(
 	nombre: "Yeison"
@@ -40,7 +41,6 @@ mutation {
     correo
   }
 }
-
 
 mutation{
   crearProyecto(
@@ -84,6 +84,8 @@ mutation{
   }
 }
 
+# Avances **********************************************************************
+
 mutation {
   crearAvance(
   fecha: "2021-11-17"
@@ -123,8 +125,7 @@ mutation {
   }
 }
 
-
-query Query {
+query {
   Avances {
     _id
     fecha
@@ -139,7 +140,6 @@ query Query {
   }
 }
 
-
 query {
   filtrarAvance(idProyecto:"") {
     fecha
@@ -148,6 +148,8 @@ query {
     observaciones
   }
 }
+
+# Usuarios **********************************************************************
 
 query Usuarios {
   Usuarios {
