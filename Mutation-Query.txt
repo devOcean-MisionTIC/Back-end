@@ -89,9 +89,10 @@ mutation{
 mutation {
   crearAvance(
   fecha: "2021-11-17"
+  titulo: "Titulo Avance 1"
   creadoPor: "61970a6375f9455c4d328d2c"
   proyecto: "61970b1a75f9455c4d328d35"
-  descripcion: "Este es el avance del proyecto"
+  descripcion: "Esta es la descripcion del Avance 1"
 ) {
   _id
   descripcion
@@ -102,26 +103,30 @@ mutation {
 mutation {
   crearAvance(
   fecha: "2021-11-18"
+  titulo: "Titulo Avance 2"
   creadoPor: "61970a6375f9455c4d328d2c"
   proyecto: "61970b1a75f9455c4d328d35"
-  descripcion: "Este es el avance del proyecto numero 2"
+  descripcion: "Esta es la descripcion del Avance 2"
 ) {
   _id
   descripcion
   fecha
+  titulo
   }
 }
 
 mutation {
   crearAvance(
   fecha: "2021-11-19"
+  titulo: "Titulo Avance 3"
   creadoPor: "61970a6375f9455c4d328d2c"
   proyecto: "61970b1a75f9455c4d328d35"
-  descripcion: "Este es el avance del proyecto numero 3"
+  descripcion: "Esta es la descripcion del Avance 3"
 ) {
   _id
   descripcion
   fecha
+  titulo
   }
 }
 
