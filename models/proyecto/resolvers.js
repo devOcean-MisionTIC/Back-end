@@ -6,6 +6,11 @@ const resolversProyecto = {
       const proyectos = await ProjectModel.find();
         return proyectos;
     },
+    filtrarProyecto: async (parents, args) => {
+      const projectFilter = await ProjectModel.findOne({ _id: args._id })
+      .populate('lider');
+      return projectFilter;
+    }
   },
   Mutation: {
     crearProyecto: async (parent, args, context) => {
