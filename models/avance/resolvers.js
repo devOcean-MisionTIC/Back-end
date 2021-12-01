@@ -1,4 +1,5 @@
 import { ModeloAvance } from './avance.js';
+import { ObjectId } from 'mongodb';
 
 const resolversAvance = {
   Query: {
@@ -12,6 +13,17 @@ const resolversAvance = {
         .populate('creadoPor');
       return avanceFiltrado;
     },
+    filtrarAvancePorId: async (parents, args) => {
+      const avanceFiltrado = await ModeloAvance.findOne({ _id: args._idAvance })
+        .populate('proyecto')
+        .populate('creadoPor');
+      return avanceFiltrado;
+    },
+    filtrarAvancePorEstudiante: async (parents, args) => {
+      const avanceFiltrado = await ModeloAvance.find({ creadoPor: new ObjectId(args.idEstudiante) });
+ 
+      return avanceFiltrado;
+    },
   },
   Mutation: {
     crearAvance: async (parents, args) => {
@@ -23,6 +35,36 @@ const resolversAvance = {
         creadoPor: args.creadoPor,
       });
       return avanceCreado;
+    }, 
+    editarAvanceEstudiante: async (parent, args) => {
+      const avanceEdited = await ModeloAvance.findByIdAndUpdate(args._idAvance, {
+        titulo: args.titulo,
+        descripcion: args.descripcion,
+        
+      },{new:true});
+
+      return avanceEdited;
+    },
+    // editarObservacionesAvance: async (parent, args) => {
+    //   const avanceEdited = await ModeloAvance.findByIdAndUpdate(args._idAvance, {
+    //     observaciones: args.observaciones
+    //   },{new:true});
+
+    //   return avanceEdited;
+    // },
+    addNewObservacionAvance: async (parent, args) => {
+      const addObservacion= args.observacion;
+      const avanceObjetivos = await ModeloAvance.findByIdAndUpdate(
+        args._idAvance,
+        {
+          $addToSet: {
+            observaciones:  addObservacion ,
+          },
+        },
+        { new: true }
+      );
+
+      return avanceObjetivos;
     },
   },
 };

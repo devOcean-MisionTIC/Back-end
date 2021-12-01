@@ -6,7 +6,7 @@ const { Schema, model } = mongoose;
 
 const avanceSchema = new Schema({
   fecha: {
-    type: Date,
+    type: String,
     required: true,
   },
   titulo: {
