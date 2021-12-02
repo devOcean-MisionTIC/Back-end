@@ -22,6 +22,11 @@ const projectSchema = new Schema(
       type: Date,
      
     },
+    fechaCreacion: {
+      type: Date,
+      default: Date.now,
+    },
+    
     estado: {
       type: String,
       enum: ['ACTIVO', 'INACTIVO'],
