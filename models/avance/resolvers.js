@@ -37,7 +37,8 @@ const resolversAvance = {
       return avanceCreado;
     }, 
     editarAvanceEstudiante: async (parent, args) => {
-      const avanceEdited = await ModeloAvance.findByIdAndUpdate(args._idAvance, {
+      const avanceEdited =
+      await ModeloAvance.findByIdAndUpdate(args._idAvance, {
         titulo: args.titulo,
         descripcion: args.descripcion,
         
