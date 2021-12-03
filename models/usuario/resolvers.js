@@ -9,12 +9,15 @@ const resolversUsuario = {
         path: 'inscripciones',
         populate: {
           path: 'proyecto',
-          populate: [{ path: 'lider' }, { path: 'avances' }],
+          populate: [{ path: 'lider' }, { path: 'avancesCreados' }],
           },
         },
           {
           path: 'proyectosLiderados',
           },
+          {
+            path: 'avancesCreados',
+            },
         ]);
       return usuarios;
     },
