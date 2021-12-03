@@ -11,7 +11,15 @@ const resolversProyecto = {
       const projectFilter = await ProjectModel.findOne({ _id: args._id })
       .populate('lider');
       return projectFilter;
-    }
+    }, 
+
+    filtrarProyectoPorLider: async (parents, args) => {
+      const projectsFilter = await ProjectModel.find({ "lider": args.id_lider })
+      .populate('lider');
+      return projectsFilter;
+    }, 
+    
+ 
   },
   Mutation: {
     crearProyecto: async (parent, args, context) => {

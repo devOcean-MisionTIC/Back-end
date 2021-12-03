@@ -30,6 +30,11 @@ const resolversUsuario = {
     crearUsuario: async (parent, args) => {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(args.password, salt);
+     
+      const usuarioExiste = 
+      await UserModel.findOne({ identificacion: args.identificacion });
+      
+      if(usuarioExiste===null){
       const usuarioCreado = await UserModel.create({
         nombre: args.nombre,
         apellido: args.apellido,
@@ -38,12 +43,13 @@ const resolversUsuario = {
         rol: args.rol,
         password: hashedPassword,
       });
-
+    
       if (Object.keys(args).includes('estado')) {
         usuarioCreado.estado = args.estado;
-      }
-
-      return usuarioCreado;
+      }  return usuarioCreado;
+      
+    }else {return "ID existente"}
+      
     },
     editarUsuario: async (parent, args) => {
       const usuarioEditado = await UserModel.findByIdAndUpdate(args._id, {

@@ -37,7 +37,7 @@ const tiposProyecto = gql`
     estado: Enum_EstadoProyecto!
     fase: Enum_FaseProyecto!
     lider: Usuario!
-    objetivos: [Objetivo]
+    objetivos: []
     avances: [Avance]
     inscripciones: [Inscripcion]
   }
@@ -45,6 +45,8 @@ const tiposProyecto = gql`
   type Query {
     Proyectos: [Proyecto]
     filtrarProyecto(_id: String!):Proyecto
+    filtrarProyectoPorLider(id_lider: String!): [Proyecto]
+    filtrarProyectoPorLiderOtro(id_lider: String!): [Proyecto]
   }
 
   type Mutation {
