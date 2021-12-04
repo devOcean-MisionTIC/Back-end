@@ -16,12 +16,17 @@ const projectSchema = new Schema(
     },
     fechaInicio: {
       type: Date,
-      required: true,
+     
     },
     fechaFin: {
       type: Date,
-      required: true,
+     
     },
+    fechaCreacion: {
+      type: Date,
+      default: Date.now,
+    },
+    
     estado: {
       type: String,
       enum: ['ACTIVO', 'INACTIVO'],
