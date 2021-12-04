@@ -25,6 +25,10 @@ const resolversUsuario = {
       const usuario = await UserModel.findOne({ _id: args._id });
       return usuario;
     },
+    filtrarUsuario: async (parents, args) => {
+      const usuarioFilter = await UserModel.find({rol:args.rol})
+      return usuarioFilter;
+    }
   },
   Mutation: {
     crearUsuario: async (parent, args) => {
