@@ -38,7 +38,10 @@ const tiposUsuario = gql`
       correo: String!
       estado: Enum_EstadoUsuario!
     ): Usuario
-
+    cambiarEstadoUsuario(
+      _id: String!
+      estado: Enum_EstadoUsuario!
+    ): Usuario
     eliminarUsuario(_id: String, correo: String): Usuario
   }
 `;

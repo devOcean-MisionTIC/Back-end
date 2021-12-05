@@ -15,9 +15,7 @@ const resolversUsuario = {
           {
           path: 'proyectosLiderados',
           },
-          {
-            path: 'avancesCreados',
-            },
+          
         ]);
       return usuarios;
     },
@@ -57,6 +55,14 @@ const resolversUsuario = {
         apellido: args.apellido,
         identificacion: args.identificacion,
         correo: args.correo,
+        estado: args.estado,
+      },{new:true});
+
+      return usuarioEditado;
+    },
+    cambiarEstadoUsuario: async (parent, args) => {
+      const usuarioEditado = await UserModel.findByIdAndUpdate(args._id, {
+        
         estado: args.estado,
       },{new:true});
 
