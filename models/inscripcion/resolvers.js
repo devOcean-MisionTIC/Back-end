@@ -14,7 +14,13 @@ const resolverInscripciones = {
       .populate('estudiante');
       return filterInscriptions;
     }, 
-    
+    filtrarInscripcionesPorProyecto: async (parents, args) => {
+      const filterInscriptions = 
+      await InscriptionModel.find({ "proyecto": args.idProyecto })
+      .populate('proyecto')
+      .populate('estudiante');
+      return filterInscriptions;
+    }, 
     // filtrarInscripcionesPorLider: async (parents, args) => {
     //   const filterInscriptions = await InscriptionModel.find();
     //   await InscriptionModel.find().populate({

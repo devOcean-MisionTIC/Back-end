@@ -13,7 +13,7 @@ const tiposInscripcion = gql`
   type Query {
     Inscripciones: [Inscripcion]
     filtrarInscripcionesPorEstudiante(id_estudiante : String!): [Inscripcion]
-    
+    filtrarInscripcionesPorProyecto(idProyecto : String!): [Inscripcion]
     
   }
 
