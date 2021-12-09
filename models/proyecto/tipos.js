@@ -9,7 +9,7 @@ const tiposProyecto = gql`
 
   input crearObjetivo {
     descripcion: String!
-    tipo: String!
+    tipo: Enum_TipoObjetivo!
   }
 
   input camposObjetivo {
