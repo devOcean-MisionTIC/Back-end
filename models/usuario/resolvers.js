@@ -4,19 +4,26 @@ import bcrypt from 'bcrypt';
 const resolversUsuario = {
   Query: {
     Usuarios: async (parent, args, context) => {
-      const usuarios = await UserModel.find().populate([
-        {
-        path: 'inscripciones',
-        populate: {
-          path: 'proyecto',
-          populate: [{ path: 'lider' }],
-          },
-        },
+
+      if(context.userData.rol==='ADMINISTRADOR'){
+
+        const usuarios = await UserModel.find().populate([
           {
-          path: 'proyectosLiderados',
+          path: 'inscripciones',
+          populate: {
+            path: 'proyecto',
+            populate: [{ path: 'lider' }],
+            },
           },
-        ]);
-      return usuarios;
+            {
+            path: 'proyectosLiderados',
+            }
+          ]);
+        return usuarios;
+      }else if(context.userData.rol==='LIDER'){
+        const usuarios = await UserModel.find({rol:'ESTUDIANTE'})
+        return usuarios;
+      }
     },
     Usuario: async (parent, args) => {
       const usuario = await UserModel.findOne({ _id: args._id });
