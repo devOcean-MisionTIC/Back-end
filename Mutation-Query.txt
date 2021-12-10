@@ -83,7 +83,21 @@ mutation{
     nombre
   }
 }
-
+mutation EditarProyecto($id: String!, $nombre: String, $presupuesto: Float, $idProyecto: String!, $indexObjetivo: Int!, $campos: camposObjetivo!) {
+  editarProyecto(_id: $id, nombre: $nombre, presupuesto: $presupuesto) {
+    _id
+    nombre
+    presupuesto
+  }
+  
+  editarObjetivo(idProyecto: $idProyecto, indexObjetivo: $indexObjetivo, campos: $campos) {
+    objetivos {
+      _id
+      descripcion
+      tipo
+    }
+  }
+}
 # Avances **********************************************************************
 
 mutation {
