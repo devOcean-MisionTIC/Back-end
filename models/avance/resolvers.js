@@ -29,16 +29,9 @@ const resolversAvance = {
   },
   Mutation: {
     crearAvance: async (parents, args) => {
-      // const firstAdvance= ModeloAvance.find({ proyecto: args.idProject });
-      // console.log("first",firstAdvance);
+
       let datenow= new Date();
-      // if(firstAdvance.length==0){
-      //  const a= await ProjectModel.findByIdAndUpdate(args.idProject, {
-      //     fase: "DESARROLLO",
-      //     fechaInicio:datenow,
-      //   });
-      //   console.log("a",a);
-      // }
+      
      
       const avanceCreado = ModeloAvance.create({
         fecha: args.fecha,
@@ -48,12 +41,12 @@ const resolversAvance = {
         creadoPor: args.creadoPor,
       });
       if(args.numAdvances==="0"){
-        console.log("first advance");
+    
         const a=await ProjectModel.findByIdAndUpdate(args.proyecto, {
               fase: "DESARROLLO",
               fechaInicio:datenow,
             });
-            console.log("a",a);
+            
       }
       return avanceCreado;
     }, 
