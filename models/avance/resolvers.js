@@ -1,5 +1,6 @@
 import { ModeloAvance } from './avance.js';
 import { ObjectId } from 'mongodb';
+import { ProjectModel } from '../proyecto/proyecto.js';
 
 const resolversAvance = {
   Query: {
@@ -28,6 +29,10 @@ const resolversAvance = {
   },
   Mutation: {
     crearAvance: async (parents, args) => {
+
+      let datenow= new Date();
+      
+     
       const avanceCreado = ModeloAvance.create({
         fecha: args.fecha,
         titulo: args.titulo,
@@ -35,6 +40,14 @@ const resolversAvance = {
         proyecto: args.proyecto,
         creadoPor: args.creadoPor,
       });
+      if(args.numAdvances==="0"){
+    
+        const a=await ProjectModel.findByIdAndUpdate(args.proyecto, {
+              fase: "DESARROLLO",
+              fechaInicio:datenow,
+            });
+            
+      }
       return avanceCreado;
     }, 
     editarAvanceEstudiante: async (parent, args) => {
