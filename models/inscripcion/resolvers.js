@@ -34,7 +34,16 @@ const resolverInscripciones = {
       .populate('proyecto')
       .populate('estudiante');
       return filterInscriptions;
+
+    },
+    filtrarSiEstaInscrito: async (parents, args) => {
+      const filterInscriptions = 
+      await InscriptionModel.find({ "proyecto": args.idProyecto ,
+      "estudiante":args.idEstudiante,"estado":"ACEPTADO"});
+      
+      return filterInscriptions;
     }, 
+  
     filtrarInscripcionesPorProyecto: async (parents, args) => {
       const filterInscriptions = 
       await InscriptionModel.find({ "proyecto": args.idProyecto })
