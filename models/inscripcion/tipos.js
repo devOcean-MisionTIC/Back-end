@@ -14,7 +14,7 @@ const tiposInscripcion = gql`
     Inscripciones: [Inscripcion]
     filtrarInscripcionesPorEstudiante(id_estudiante : String!): [Inscripcion]
     filtrarInscripcionesPorProyecto(idProyecto : String!): [Inscripcion]
-    filtrarSiEstaInscrito(idProyecto : String!, idEstudiante:String!): [Inscripcion]
+    filtrarSiEstaInscrito(idProyecto : String!, idEstudiante:String!): Inscripcion
   }
 
   type Mutation {

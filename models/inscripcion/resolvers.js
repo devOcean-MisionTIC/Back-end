@@ -38,7 +38,7 @@ const resolverInscripciones = {
     },
     filtrarSiEstaInscrito: async (parents, args) => {
       const filterInscriptions = 
-      await InscriptionModel.find({ "proyecto": args.idProyecto ,
+      await InscriptionModel.findOne({ "proyecto": args.idProyecto ,
       "estudiante":args.idEstudiante,"estado":"ACEPTADO"});
       
       return filterInscriptions;
