@@ -30,6 +30,8 @@ const resolversAutenticacion = {
 
     login: async (parent, args) => {
       const usuarioEcontrado = await UserModel.findOne({ correo: args.correo });
+      if(usuarioEcontrado==null){return null;}
+      else{
       if (await bcrypt.compare(args.password, usuarioEcontrado.password)) {
         return {
           token: generateToken({
@@ -42,7 +44,7 @@ const resolversAutenticacion = {
             estado: usuarioEcontrado.estado,
           }),
         };
-      }
+      }}
     },
 
     refreshToken: async (parent, args, context) => {
