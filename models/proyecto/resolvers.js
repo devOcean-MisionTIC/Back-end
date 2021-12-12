@@ -60,8 +60,14 @@ const resolversProyecto = {
       },{new:true});
     return edited;
   }
-,editarProyectoPorAdmin: async (parent, args) => {
-  const edited =
+,
+editarProyectoPorAdmin: async (parent, args) => {
+// //   if(args.estado=="INACTIVO"){
+// //     const egresoInscripciones= f
+// //   
+
+// const edited =}
+
   await ProjectModel.findByIdAndUpdate(args.idProyecto, {
     estado: args.estado,
     fase: args.fase,

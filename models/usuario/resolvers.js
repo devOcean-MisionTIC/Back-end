@@ -87,6 +87,18 @@ const resolversUsuario = {
       );
 
       return MiUsuarioEditado;
+    }, 
+    resetPassword: async (parent,args)=> {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(args.password, salt);
+      const actualizarContrasena = await UserModel.findByIdAndUpdate(
+        args._id,
+        {
+          password: hashedPassword,
+        },
+        { new: true }
+      );
+      return "Contrasena actualizada",actualizarContrasena;
     },
     cambiarEstadoUsuario: async (parent, args) => {
       const usuarioEditado = await UserModel.findByIdAndUpdate(
