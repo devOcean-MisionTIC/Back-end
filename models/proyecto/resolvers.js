@@ -64,8 +64,13 @@ const resolversProyecto = {
 ,
 editarProyectoPorAdmin: async (parent, args) => {
   
-
-
+  
+let egreso=Date.now();
+  if(args.estado=="INACTIVO"){
+  const a= InscriptionModel.updateMany({"proyecto": args.idProyecto,fechaEgreso:null}, 
+  {"$set":{"fechaEgreso": egreso}}, {"multi": true}, (err, writeResult) => {});
+   
+  }
 const edited=  await ProjectModel.findByIdAndUpdate(args.idProyecto, {
     estado: args.estado,
     fase: args.fase,
@@ -73,12 +78,6 @@ const edited=  await ProjectModel.findByIdAndUpdate(args.idProyecto, {
     fechaFin:args.fechaFin,
   },{new:true});
 
-  
-  if(args.estado=="INACTIVO"){
-  InscriptionModel.updateMany({proyecto:args.idProyecto, fechaEgreso:null},{
-      $set: {fechaEgreso:Date.now()}
-    })
-  }
 return edited;
 },
     
