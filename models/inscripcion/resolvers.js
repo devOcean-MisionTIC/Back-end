@@ -23,6 +23,15 @@ const resolverInscripciones = {
             },
           };
         }
+        
+      }
+
+      if (context.userData) {
+        if (context.userData.rol === 'ESTUDIANTE') {
+          const projectsEstudiante = await InscriptionModel.find({ estudiante: context.userData._id });
+         return projectsEstudiante;
+        }
+        
       }
       const inscripciones = await InscriptionModel.find({ ...filtro });
       return inscripciones;
@@ -108,7 +117,7 @@ const resolverInscripciones = {
         args.id,
         {
           estado: 'RECHAZADO',
-          fechaEgreso: Date.now(),
+          
         },
         { new: true }
       );
