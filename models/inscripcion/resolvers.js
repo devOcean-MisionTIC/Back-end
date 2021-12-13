@@ -39,7 +39,7 @@ const resolverInscripciones = {
     filtrarSiEstaInscrito: async (parents, args) => {
       const filterInscriptions = 
       await InscriptionModel.findOne({ "proyecto": args.idProyecto ,
-      "estudiante":args.idEstudiante,"estado":"ACEPTADO"});
+      "estudiante":args.idEstudiante,"estado":"ACEPTADO",fechaEgreso:null});
       
       return filterInscriptions;
     }, 

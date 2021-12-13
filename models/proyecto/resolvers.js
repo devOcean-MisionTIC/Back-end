@@ -1,3 +1,4 @@
+import { InscriptionModel } from '../inscripcion/inscripcion.js';
 import { ProjectModel } from './proyecto.js';
 
 const resolversProyecto = {
@@ -62,18 +63,22 @@ const resolversProyecto = {
   }
 ,
 editarProyectoPorAdmin: async (parent, args) => {
-// //   if(args.estado=="INACTIVO"){
-// //     const egresoInscripciones= f
-// //   
+  
 
-// const edited =}
 
-  await ProjectModel.findByIdAndUpdate(args.idProyecto, {
+const edited=  await ProjectModel.findByIdAndUpdate(args.idProyecto, {
     estado: args.estado,
     fase: args.fase,
     fechaInicio:args.fechaInicio,
     fechaFin:args.fechaFin,
   },{new:true});
+
+  
+  if(args.estado=="INACTIVO"){
+  InscriptionModel.updateMany({proyecto:args.idProyecto, fechaEgreso:null},{
+      $set: {fechaEgreso:Date.now()}
+    })
+  }
 return edited;
 },
     
