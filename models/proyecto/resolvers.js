@@ -4,9 +4,16 @@ import { ProjectModel } from './proyecto.js';
 const resolversProyecto = {
   Query: {
     Proyectos: async (parent, args, context) => {
+      if (context.userData) {
+     if (context.userData.rol === 'ESTUDIANTE') {
+       return ProjectModel.find()
+       .populate('lider')
+       .populate("inscripciones");
+     }}else{
       const proyectos = await ProjectModel.find()
-      .populate('lider');
-        return proyectos;
+      .populate('lider')
+     
+        return proyectos;}
     },
     filtrarProyecto: async (parents, args) => {
       const projectFilter = await ProjectModel.findOne({ _id: args._id })
@@ -19,8 +26,47 @@ const resolversProyecto = {
       .populate('lider');
       return projectsFilter;
     }, 
-    
- 
+    // ProyectosConInscripciones: async (parent, args, context) => {
+    //   // const proyectos = await ProjectModel.find()
+    //   // .populate('inscripciones');
+    //   let filtro = {};
+    //   // if (context.userData) {
+    //   //   if (context.userData.rol === 'ESTUDIANTE') {
+    //       // const projects = await InscriptionModel.find({ estudiante: context.userData._id });
+    //       const projects = await InscriptionModel.find({ estudiante: "61a95aebeb450051e9c2dc10" });
+    //       const projectList = projects.map((p) => p.proyecto.toString());
+    //       console.log("projects",projectList);
+    //       filtro = {
+    //         _id: {
+    //           $ne: projectList,
+    //         },
+    //       };
+    //   //   }   
+    //   // }
+      
+    //   const sinInscripciones = await ProjectModel.find({ ...filtro });
+    //   return sinInscripciones;
+      
+    // },
+  //   ProyectosConInscripciones: async (parent, args, context) => {
+  //     // const proyectos = await ProjectModel.find()
+  //     // .populate('inscripciones');
+  //     let filtro = {};
+  //     // if (context.userData) {
+  //     //   if (context.userData.rol === 'ESTUDIANTE') {
+  //         // const projects = await InscriptionModel.find({ estudiante: context.userData._id });
+  //           const proyectos = await ProjectModel.find().populate('inscripciones');
+  //         const projectList = proyectos.inscripciones.filter((p) => 
+  //         p.filter((el) => el.estudiante === "61a95aebeb450051e9c2dc10" ));
+  //         console.log("projects",projectList);
+  //       return projectList;
+  //     //   }   
+  //     // }
+      
+  //     // const sinInscripciones = await ProjectModel.find({ ...filtro });
+  //     // return sinInscripciones;
+      
+  //   },
   },
   Mutation: {
     crearProyecto: async (parent, args, context) => {
