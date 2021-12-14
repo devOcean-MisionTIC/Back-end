@@ -48,6 +48,11 @@ const tiposUsuario = gql`
       correo: String
     ): Usuario
 
+    resetPassword(
+      _id: String!
+      password: String!
+    ): Usuario
+
     cambiarEstadoUsuario(
       _id: String!
       estado: Enum_EstadoUsuario!
