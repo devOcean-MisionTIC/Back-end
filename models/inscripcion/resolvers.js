@@ -23,6 +23,15 @@ const resolverInscripciones = {
             },
           };
         }
+        
+      }
+
+      if (context.userData) {
+        if (context.userData.rol === 'ESTUDIANTE') {
+          const projectsEstudiante = await InscriptionModel.find({ estudiante: context.userData._id });
+         return projectsEstudiante;
+        }
+        
       }
       const inscripciones = await InscriptionModel.find({ ...filtro });
       return inscripciones;
@@ -39,7 +48,7 @@ const resolverInscripciones = {
     filtrarSiEstaInscrito: async (parents, args) => {
       const filterInscriptions = 
       await InscriptionModel.findOne({ "proyecto": args.idProyecto ,
-      "estudiante":args.idEstudiante,"estado":"ACEPTADO"});
+      "estudiante":args.idEstudiante,"estado":"ACEPTADO",fechaEgreso:null});
       
       return filterInscriptions;
     }, 
@@ -108,7 +117,7 @@ const resolverInscripciones = {
         args.id,
         {
           estado: 'RECHAZADO',
-          fechaEgreso: Date.now(),
+          
         },
         { new: true }
       );
