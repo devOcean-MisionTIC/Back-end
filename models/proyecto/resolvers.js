@@ -9,11 +9,10 @@ const resolversProyecto = {
        return ProjectModel.find()
        .populate('lider')
        .populate("inscripciones");
-     }}else{
+     }}
       const proyectos = await ProjectModel.find()
       .populate('lider')
-     
-        return proyectos;}
+        return proyectos;
     },
     filtrarProyecto: async (parents, args) => {
       const projectFilter = await ProjectModel.findOne({ _id: args._id })
