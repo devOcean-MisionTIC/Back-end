@@ -29,9 +29,7 @@ jobs:
       - name: Instalacion de dependencias del backend
         run: yarn install
 
-      # builds project
-      - name: Pruebas unitarias proyecto backend
-        run: yarn test
+   
 
 
   deploy:
