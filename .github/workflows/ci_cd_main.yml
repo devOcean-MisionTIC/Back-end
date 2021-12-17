@@ -50,7 +50,7 @@ jobs:
       # builds project
       - name: Pruebas unitarias proyecto backend
         run: yarn test
-    needs: [build]
+    needs: [dev]
 
   deploy:
     runs-on: ubuntu-latest
